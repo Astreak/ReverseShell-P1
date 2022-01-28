@@ -1,6 +1,6 @@
 #!/usr/bin/python3.9
-# server file
-# LinuxOS
+#Server
+#XPlatform
 import socket
 import os
 import sys

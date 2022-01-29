@@ -1,0 +1,29 @@
+
+==================================================
+Start of IE11 NoReboot Servicing
+        6.1.7601-2.1 EMPLOYE-607ODEV.EMPLOYE-607ODEV\Administrator  OS:x86  IENrUtil:x86  IEversion:8.0.7601.17514  Date(UT):20180815-184853
+        Command line: C:\Windows\TEMP\IE16485.tmp\IE11-support\ienrcore.exe /memsec IESETUP_NRCTX_0c74 
+________Parsing dynamic policy file: 'C:\Windows\TEMP\IE16485.tmp\IE11-support\NrPolicy.txt'
+________ WARNING ________ IESetup environment variable is predefined as 'C:\Windows\TEMP\IE16485.tmp\IE11-support'
+        IE version set to '8.0.7601.17514'
+        IE bitness set to 'x86'
+
+        executing must-succeed process '"C:\Windows\System32\cmd.exe" /C  IF NOT EXIST "%IESetup%\IeNrCore.exe" exit 1 > C:\Windows\Logs\IESetup_20180815-184853_temp.log 2>&1'
+        executing must-succeed process '"C:\Windows\System32\cmd.exe" /C  IF NOT EXIST "%IESetup%\ieinfra.manifest" exit 1 > C:\Windows\Logs\IESetup_20180815-184853_temp.log 2>&1'
+        executing must-succeed process '"C:\Windows\System32\cmd.exe" /C  IF NOT EXIST "%IESetup%\trustedinstaller.exe.manifest" exit 1 > C:\Windows\Logs\IESetup_20180815-184853_temp.log 2>&1'
+        executing must-succeed process '"C:\Windows\System32\cmd.exe" /C  echo Mumfile = "%IESetup%\Microsoft-Windows-InternetExplorer-Optional-Package~31bf3856ad364e35~%IESetupBitness%~~%IESetupInstalledVersion%.mum" > C:\Windows\Logs\IESetup_20180815-184853_temp.log 2>&1'
+Mumfile = "C:\Windows\TEMP\IE16485.tmp\IE11-support\Microsoft-Windows-InternetExplorer-Optional-Package~31bf3856ad364e35~x86~~8.0.7601.17514.mum" 
+        executing must-succeed process '"C:\Windows\System32\cmd.exe" /C  IF NOT EXIST "%IESetup%\Microsoft-Windows-InternetExplorer-Optional-Package~31bf3856ad364e35~%IESetupBitness%~~%IESetupInstalledVersion%.mum" exit 1 > C:\Windows\Logs\IESetup_20180815-184853_temp.log 2>&1'
+        executing must-succeed process '"C:\Windows\System32\cmd.exe" /C  IF NOT EXIST "%IESetup%\Microsoft-Windows-InternetExplorer-Optional-Package~31bf3856ad364e35~%IESetupBitness%~~%IESetupInstalledVersion%.cat" exit 1 > C:\Windows\Logs\IESetup_20180815-184853_temp.log 2>&1'
+
+
+NRFindPreserviceProblems...
+true  03 1992 RmExplorer           "Windows Explorer" - "C:\Windows\explorer.exe"
+false 03 1492 RMConsoleApp         "Microsoft ® Console Based Script Host" - "C:\Windows\System32\cscript.exe"
+false 03 2000 RMConsoleApp         "Windows Update command-line interface" - "C:\temp\CritFix.exe"
+true  02 2372 RmService            "Windows Modules Installer" - "TrustedInstaller"
+true  02 2528 RmService            "Windows Defender" - "WinDefend"
+
+
+End of IE11 NoReboot Servicing
+==================================================

